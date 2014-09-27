@@ -1,0 +1,12 @@
+# NetBeans Directory #
+/nbproject
+
+# Complied source #
+*.o
+*.exe
+
+# Packages #
+*.zip
+*.rar
+*.tar
+*.gz
