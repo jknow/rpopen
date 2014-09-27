@@ -71,8 +71,8 @@ Here is an example of using popen to read lines of output from the command "<cod
 lists the contents of the <code>/etc</code> directory:
 </p>
 
-<div class="codeblock-box">
-#include &lt;stdio.h&gt;
+<code>
+#include <stdio.h>
 #define BSIZE 1024	/* buffer size */
 
 main(int argc, char **argv) {
@@ -89,10 +89,7 @@ main(int argc, char **argv) {
 	}
 	pclose(fp);
 }
-</div>
-<p>
-&rArr; <a href="popen-demo.html">Download a popen demo program</a>
-</p>
+</code>
 <p>
 The <em>pclose</em> function closes the FILE stream and returns the exit status of the command.
 </p>
@@ -177,8 +174,8 @@ will be sent to and executed on the server.
 <p>
 An example of a program that uses your <em>rpopen</em> function is the following:
 </p>
-<div class="codeblock-box">
-#include &lt;stdio.h&gt;
+<code>
+#include <stdio.h>
 #define BSIZE 1024
 
 FILE *rpopen(char *host, int port, char *cmd);
@@ -196,8 +193,7 @@ main(int argc, char **argv)
 	}
 	fclose(fp);
 }
-</div>
-&rArr; <a href="files/rpopen-client.c">Download the rpopen sample </a>
+</code>
 
 <p>
 This program connects to a server that is running on the same machine on the client
