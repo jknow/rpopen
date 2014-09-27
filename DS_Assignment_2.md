@@ -72,8 +72,8 @@ lists the contents of the <code>/etc</code> directory:
 </p>
 
 <code>
-#include <stdio.h>
-#define BSIZE 1024	/* buffer size */
+\#include &lt;stdio.h&gt;
+\#define BSIZE 1024	/* buffer size */
 
 main(int argc, char **argv) {
 	FILE *fp;
@@ -175,8 +175,8 @@ will be sent to and executed on the server.
 An example of a program that uses your <em>rpopen</em> function is the following:
 </p>
 <code>
-#include <stdio.h>
-#define BSIZE 1024
+\#include &lt;stdio.h&gt;
+\#define BSIZE 1024
 
 FILE *rpopen(char *host, int port, char *cmd);
 
