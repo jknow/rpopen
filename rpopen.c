@@ -21,7 +21,7 @@ rpopen(char *host, int port, char *cmd)
 	
 	printf("written\n");
 	close(sock);
-	return 0;
+	return 0; /* Causes the demo to seg fault*/
 }
 
 /*Function returns a created and bound socket */
@@ -78,7 +78,6 @@ int conn_sock(char *host, int port)
 	servaddr.sin_port = htons(port);
 
 	/* look up the address of the server given its name */
-	printf("gethostbyname\n");
 	hp = gethostbyname(host);
 	if (!hp) {
 		fprintf(stderr, "could not obtain address of %s\n", host);
@@ -86,7 +85,6 @@ int conn_sock(char *host, int port)
 	}
 
 	/* put the host's address into the server address structure */
-	printf("memcpy\n");
 	memcpy((void *)&servaddr.sin_addr, hp->h_addr_list[0], hp->h_length);
 
 	/* connect to server */

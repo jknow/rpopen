@@ -13,13 +13,39 @@
 
 main(int argc, char **argv)
 {
-	int svc;        /* listening socket providing service */
+	extern char *optarg;
+	extern int optind;
+	int c, err = 0; 
 	int port = 1234;	/* port number */
-	int rqst;       /* socket accepting the request */
-	socklen_t alen;       /* length of address structure */
-	struct sockaddr_in my_addr;    /* address of this service */
-	struct sockaddr_in client_addr;  /* client's address */
+	static char usage[] = "usage: %s [-d] [-p port]\n";
+
+	while ((c = getopt(argc, argv, "dp:")) != -1)
+		switch (c) {
+		case 'p':
+			port = atoi(optarg);
+			/* if (port < 1024 || port > 65535) { */
+			if (port < 0 || port > 65535) {
+				fprintf(stderr, "invalid port number: %s\n", optarg);
+				err = 1;
+			}
+			break;
+		case '?':
+			err = 1;
+			break;
+		}
+	if (err || (optind < argc)) {
+		fprintf(stderr, usage, argv[0]);
+		exit(1);
+	}
+	
+	/* would like to split into different method here*/
+	
+	int svc;				/* listening socket providing service */
+	int rqst;				/* socket accepting the request */
+	struct sockaddr_in my_addr;		/* address of this service */
+	struct sockaddr_in client_addr;		/* client's address */
 	int sockoptval = 1;
+	socklen_t alen = sizeof(client_addr);	/* length of address structure */
 
 
 	/* create a TCP/IP socket */
@@ -47,6 +73,8 @@ main(int argc, char **argv)
 		exit(1);
 	}
 
+	printf("SERVER READY\n");
+	
 	/* loop, accepting connection requests */
 	for (;;) {
 		while ((rqst = accept(svc, (struct sockaddr *)&client_addr, &alen)) < 0) {
