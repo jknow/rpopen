@@ -17,11 +17,11 @@ rpopen(char *host, int port, char *cmd)
 {
 	int sock = conn_sock(host, port);
 	
-	write(sock, "hello", 16);
+	write(sock, cmd, 256);
 	
 	printf("written\n");
 	close(sock);
-	return 0; /* Causes the demo to seg fault*/
+	return 0; /* Causes the demo to seg fault. Will return sock*/
 }
 
 /*Function returns a created and bound socket */
